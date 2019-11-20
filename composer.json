@@ -1,0 +1,21 @@
+{
+  "name": "carburant/laravel-mailchimp",
+  "description": "Laravel Mailchimp Package",
+  "homepage": "http://github.com/carburant/laravel-mailchimp",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Guillaume Leblanc",
+      "email": "guillaume@carburant.fr"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "~5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Carburant\\Laravel\\Mailchimp": "src/"
+    }
+  }
+}
