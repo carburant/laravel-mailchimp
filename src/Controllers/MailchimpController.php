@@ -26,7 +26,7 @@ class MailchimpController extends Controller
         $mailchimp = app()->get('Mailchimp');
 
         //
-        $currentLocale = App::getLocale();
+        $currentLocale = substr(App::getLocale(), 0, 2);
 
         $result = $mailchimp->post(sprintf('lists/%s/members', config('mailchimp.list_id')), [
             'email_address' => strtolower($request->email),
