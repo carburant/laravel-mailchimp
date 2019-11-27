@@ -1,4 +1,4 @@
-<div class="modal fade" id="mailchimp-modal" tabindex="-1" role="dialog" aria-labelledby="MailchimpModalLabel"
+<div class="modal fade" id="mailchimp-form-modal" tabindex="-1" role="dialog" aria-labelledby="MailchimpModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -34,6 +34,22 @@
     </div>
 </div>
 
+<div class="modal fade" id="mailchimp-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="MailchimpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ trans('mailchimp::mailchimp.title') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="m-0">{{ trans('mailchimp::mailchimp.confirm') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section('mailchimp.script')
     <script>
       $(function () {
@@ -47,7 +63,8 @@
             processData: false,
             contentType: false
           }).done(function () {
-            console.log('success')
+            $('#mailchimp-form-modal').modal('hide');
+            $('#mailchimp-confirm-modal').modal('show');
           }).fail(function (error) {
             $('input', event.currentTarget)
               .removeClass('is-invalid');
