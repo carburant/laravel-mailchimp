@@ -34,7 +34,7 @@ class MailchimpController extends Controller
             'language' => strtolower($currentLocale),
             'status' => 'subscribed',
             'merge_fields' => [
-                'MERGE5' => strtoupper($currentLocale)
+                'MMERGE5' => strtoupper($currentLocale)
             ]
         ]);
 
