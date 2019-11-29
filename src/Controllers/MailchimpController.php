@@ -23,10 +23,10 @@ class MailchimpController extends Controller
         /**
          * @var $mailchimp MailChimp;
          */
-        $mailchimp = app()->get('Mailchimp');
+        $mailchimp = resolve('Mailchimp');
 
         //
-        $currentLocale = substr(App::getLocale(), 0, 2);
+        $currentLocale = App::getLocale();
 
         $result = $mailchimp->post(sprintf('lists/%s/members', config('mailchimp.list_id')), [
             'email_address' => strtolower($request->email),
@@ -34,7 +34,7 @@ class MailchimpController extends Controller
             'language' => strtolower($currentLocale),
             'status' => 'subscribed',
             'merge_fields' => [
-                'MMERGE5' => strtoupper($currentLocale)
+                //
             ]
         ]);
 
@@ -48,7 +48,7 @@ class MailchimpController extends Controller
             case 400:
                 // Already subscribed
                 break;
-                //
+            //
             default:
                 break;
         }
