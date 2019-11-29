@@ -13,6 +13,18 @@ class MailchimpServiceProvider extends ServiceProvider
             __DIR__ . '/../config/mailchimp.php' => config_path('mailchimp.php'),
         ], 'config');
 
+        $this->publishes([
+            __DIR__ . '/Controllers/MailchimpController.php' => app_path('Http/Controllers/MailchimpController.php'),
+        ], 'controllers');
+
+        $this->publishes([
+            __DIR__ . '/../views' => resource_path('views/mailchimp')
+        ], 'views');
+
+        $this->publishes([
+            __DIR__ . '/../translations' => resource_path('lang')
+        ], 'translations');
+
         $this->loadRoutesFrom(__DIR__ . '/../routes/mailchimp.php');
 
         $this->loadViewsFrom(__DIR__ . '/../views', 'mailchimp');
