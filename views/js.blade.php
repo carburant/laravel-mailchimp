@@ -10,7 +10,7 @@
                 $inputs.not('[type="hidden"]').prop('checked', false).val("");
             }
         }
-        $('.mailchimp-form').on('submit', function (event) {
+        $('.js-mailchimp-form').on('submit', function (event) {
             event.preventDefault()
             var data = new FormData(event.currentTarget);
             $.ajax({

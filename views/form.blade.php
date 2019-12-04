@@ -2,7 +2,7 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form class="mailchimp-form" method="post" action="{{ route('mailchimp.subscribe') }}">
+            <form class="js-mailchimp-form" method="post" action="{{ route('mailchimp.subscribe') }}">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ trans('mailchimp::mailchimp.title') }}</h5>
