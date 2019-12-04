@@ -3,6 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form class="mailchimp-form" method="post" action="{{ route('mailchimp.subscribe') }}">
+                {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ trans('mailchimp::mailchimp.title') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,19 +13,27 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="mailchimp-email">{{ trans('mailchimp::mailchimp.fields.email') }}</label>
-                        <input type="email" class="form-control field-email" id="mailchimp-email" name="email"
-                               aria-describedby="emailHelp" placeholder="">
-                        <div class="invalid-feedback"></div>
+                        <input type="email" class="form-control field-email" id="mailchimp-email" name="email" aria-describedby="emailHelp" placeholder="">
+                        <div class="error-feedback d-none text-danger"></div>
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox ">
-                            <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms"
-                                   name="terms">
-                            <label class="custom-control-label"
-                                   for="mailchimp-terms">{{ trans('mailchimp::mailchimp.fields.terms') }}</label>
-                            <div class="invalid-feedback"></div>
+                            <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
+                            <label class="custom-control-label" for="mailchimp-terms">{{ trans('mailchimp::mailchimp.fields.terms') }}</label>
                         </div>
+                        <div class="error-feedback d-none text-danger"></div>
                     </div>
+                    {{--
+                    <!-- Bootstrap 3 -->
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{ trans('mailchimp::mailchimp.fields.terms') }}</span>
+                        </label>
+                        <div class="error-feedback d-none text-danger"></div>
+                    </div>
+                    --}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">{{ trans('mailchimp::mailchimp.submit') }}</button>
@@ -51,32 +60,5 @@
 </div>
 
 @section('mailchimp.script')
-    <script>
-      $(function () {
-        $('.mailchimp-form').on('submit', function (event) {
-          event.preventDefault()
-          var data = new FormData(event.currentTarget)
-          $.ajax({
-            url: event.currentTarget.action,
-            type: event.currentTarget.method,
-            data: data,
-            processData: false,
-            contentType: false
-          }).done(function () {
-            $('#mailchimp-form-modal').modal('hide');
-            $('#mailchimp-confirm-modal').modal('show');
-          }).fail(function (error) {
-            $('input', event.currentTarget)
-              .removeClass('is-invalid');
-            if (error.responseJSON && error.responseJSON.errors) {
-              var errors = error.responseJSON.errors
-              for (var name in errors) {
-                $('.field-' + name, event.currentTarget)
-                  .addClass('is-invalid');
-              }
-            }
-          })
-        })
-      })
-    </script>
+    @include('mailchimp::js')
 @endsection
