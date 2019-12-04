@@ -18,8 +18,13 @@ class MailchimpServiceProvider extends ServiceProvider
         ], 'controllers');
 
         $this->publishes([
-            __DIR__ . '/../views' => resource_path('views/mailchimp')
+            __DIR__ . '/../views/button.blade.php' => resource_path('views/mailchimp'),
+            __DIR__ . '/../views/form.blade.php' => resource_path('views/mailchimp'),
         ], 'views');
+
+        $this->publishes([
+            __DIR__ . '/../views/js.blade.php' => resource_path('views/mailchimp'),
+        ], 'js');
 
         $this->publishes([
             __DIR__ . '/../translations' => resource_path('lang')
