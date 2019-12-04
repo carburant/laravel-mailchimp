@@ -16,24 +16,26 @@
                         <input type="email" class="form-control field-email" id="mailchimp-email" name="email" aria-describedby="emailHelp" placeholder="">
                         <div class="error-feedback d-none text-danger"></div>
                     </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox ">
-                            <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
-                            <label class="custom-control-label" for="mailchimp-terms">{{ trans('mailchimp::mailchimp.fields.terms') }}</label>
+                    @if(config('mailchimp.bootstrap_version') == 4)
+                        <!-- Bootstrap 4 -->
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox ">
+                                <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
+                                <label class="custom-control-label" for="mailchimp-terms">{{ trans('mailchimp::mailchimp.fields.terms') }}</label>
+                            </div>
+                            <div class="error-feedback d-none text-danger"></div>
                         </div>
-                        <div class="error-feedback d-none text-danger"></div>
-                    </div>
-                    {{--
-                    <!-- Bootstrap 3 -->
-                    <div class="form-group">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{ trans('mailchimp::mailchimp.fields.terms') }}</span>
-                        </label>
-                        <div class="error-feedback d-none text-danger"></div>
-                    </div>
-                    --}}
+                    @if(config('mailchimp.bootstrap_version') == 3)
+                        <!-- Bootstrap 3 -->
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input field-terms" id="mailchimp-terms" name="terms">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{ trans('mailchimp::mailchimp.fields.terms') }}</span>
+                            </label>
+                            <div class="error-feedback d-none text-danger"></div>
+                        </div>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">{{ trans('mailchimp::mailchimp.submit') }}</button>
